@@ -22,6 +22,6 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper/countryMapper.xml"/>
+        <mapper resource="mapper/sysUserMapper.xml"/>
     </mappers>
 </configuration>

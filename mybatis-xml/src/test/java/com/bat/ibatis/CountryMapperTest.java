@@ -1,7 +1,7 @@
 package com.bat.ibatis;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bat.ibatis.po.CountryPO;
+import com.bat.ibatis.po.SysUserPO;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -37,7 +37,7 @@ public class CountryMapperTest {
     @Test
     public void testGetCountryList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<CountryPO> countryList = sqlSession.selectList("getCountryList");
-        System.out.println(JSONObject.toJSONString(countryList));
+        SysUserPO sysUser = sqlSession.selectOne("getSysUserPO");
+        System.out.println(JSONObject.toJSONString(sysUser));
     }
 }
