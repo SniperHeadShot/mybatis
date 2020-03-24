@@ -1,6 +1,7 @@
 package com.bat.ibatis;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bat.ibatis.dao.SysRoleDao;
 import com.bat.ibatis.po.SysRolePO;
 import com.bat.ibatis.util.TimeUtil;
 import com.bat.ibatis.util.UuidUtil;
@@ -45,7 +46,8 @@ public class SysRoleMapperTest {
     @Test
     public void testGetSysRoleList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<SysRolePO> sysRoleList = sqlSession.selectList("getSysRoleList");
+        SysRoleDao sysRoleDao = sqlSession.getMapper(SysRoleDao.class);
+        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleList();
         log.info("系统角色查询结果 ==> [{}]", JSONObject.toJSONString(sysRoleList));
     }
 
@@ -61,7 +63,8 @@ public class SysRoleMapperTest {
         }};
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        sysUserList.forEach(sysRole -> sqlSession.insert("insertSysRole", sysRole));
+        SysRoleDao sysRoleDao = sqlSession.getMapper(SysRoleDao.class);
+        sysUserList.forEach(sysRole -> sysRoleDao.insertSysRole(sysRole));
         sqlSession.commit();
         log.info("系统角色添加成功!");
     }

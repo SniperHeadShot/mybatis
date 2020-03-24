@@ -2,6 +2,8 @@ package com.bat.ibatis.dao;
 
 import com.bat.ibatis.po.SysRolePO;
 
+import java.util.List;
+
 /**
  * 系统角色 Dao
  *
@@ -10,7 +12,7 @@ import com.bat.ibatis.po.SysRolePO;
  **/
 public interface SysRoleDao {
 
-    SysRolePO getSysRoleList();
+    List<SysRolePO> getSysRoleList();
 
     int insertSysRole(SysRolePO sysRolePO);
 }

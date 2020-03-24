@@ -1,6 +1,7 @@
 package com.bat.ibatis;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bat.ibatis.dao.SysUserDao;
 import com.bat.ibatis.po.SysUserPO;
 import com.bat.ibatis.util.TimeUtil;
 import com.bat.ibatis.util.UuidUtil;
@@ -45,7 +46,8 @@ public class SysUserMapperTest {
     @Test
     public void testGetSysUserList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<SysUserPO> sysUserList = sqlSession.selectList("getSysUserList");
+        SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
+        List<SysUserPO> sysUserList = sysUserDao.getSysUserList();
         log.info("系统人员查询结果 ==> [{}]", JSONObject.toJSONString(sysUserList));
     }
 
@@ -62,7 +64,8 @@ public class SysUserMapperTest {
         }};
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        sysUserList.forEach(sysUser -> sqlSession.insert("insertSysUser", sysUser));
+        SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
+        sysUserList.forEach(sysUser -> sysUserDao.insertSysUser(sysUser));
         sqlSession.commit();
         log.info("系统角色添加成功!");
     }

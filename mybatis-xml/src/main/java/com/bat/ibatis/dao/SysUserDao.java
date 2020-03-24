@@ -2,6 +2,8 @@ package com.bat.ibatis.dao;
 
 import com.bat.ibatis.po.SysUserPO;
 
+import java.util.List;
+
 /**
  * 系统角色 Dao
  *
@@ -10,7 +12,7 @@ import com.bat.ibatis.po.SysUserPO;
  **/
 public interface SysUserDao {
 
-    SysUserPO getSysUserList();
+    List<SysUserPO> getSysUserList();
 
     int insertSysUser(SysUserPO sysUserPO);
 }
