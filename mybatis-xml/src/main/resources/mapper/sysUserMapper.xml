@@ -3,8 +3,11 @@
 
 <mapper namespace="com.bat.ibatis.dao.SysUserDao">
 
-    <select id="getSysUserPO" parameterType="string" resultType="SysUserPO">
-        select userUuid, username, password, email, phone, extInfo, img, createTime, updateTime from sys_user
+    <select id="getSysUserList" resultType="SysUserPO">
+        select userUuid, username, password, email, phone, createTime, updateTime from sys_user
     </select>
 
+    <insert id="insertSysUser" parameterType="SysUserPO">
+        insert into sys_user (userUuid, username, password, email, phone, createTime) values (#{userUuid}, #{username}, #{password}, #{email}, #{phone}, #{createTime})
+    </insert>
 </mapper>

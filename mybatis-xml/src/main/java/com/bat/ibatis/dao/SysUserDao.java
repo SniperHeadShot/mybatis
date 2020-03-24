@@ -10,7 +10,7 @@ import com.bat.ibatis.po.SysUserPO;
  **/
 public interface SysUserDao {
 
-    SysUserPO getSysUserPO(String userUuid);
+    SysUserPO getSysUserList();
 
-//    int insertSysUser(SysUserPO sysUserPO);
+    int insertSysUser(SysUserPO sysUserPO);
 }

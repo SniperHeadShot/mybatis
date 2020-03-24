@@ -16,4 +16,17 @@ public class SysRolePO {
     private String roleUuid;
 
     private String roleName;
+
+    private String createTime;
+
+    private String updateTime;
+
+    public SysRolePO() {
+    }
+
+    public SysRolePO(String roleUuid, String roleName, String createTime) {
+        this.roleUuid = roleUuid;
+        this.roleName = roleName;
+        this.createTime = createTime;
+    }
 }

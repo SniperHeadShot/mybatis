@@ -1,6 +1,5 @@
 package com.bat.ibatis.po;
 
-import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 /**
@@ -24,11 +23,17 @@ public class SysUserPO {
 
     private String phone;
 
-    private JSONObject extInfo;
-
-    private String img;
-
     private String createTime;
 
     private String updateTime;
+
+    public SysUserPO() {
+    }
+
+    public SysUserPO(String userUuid, String username, String password, String createTime) {
+        this.userUuid = userUuid;
+        this.username = username;
+        this.password = password;
+        this.createTime = createTime;
+    }
 }
