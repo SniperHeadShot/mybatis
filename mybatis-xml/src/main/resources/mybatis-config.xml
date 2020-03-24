@@ -3,7 +3,7 @@
 <configuration>
     <!--日志打印-->
     <settings>
-        <setting name="logImpl" value="LOG4J"/>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
     <!-- 起别名方便配置 -->
