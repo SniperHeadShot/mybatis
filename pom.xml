@@ -15,9 +15,9 @@
 
     <properties>
         <!-- mybatis -->
-        <mybatis.version>3.4.5</mybatis.version>
+        <mybatis.version>3.4.6</mybatis.version>
         <!-- mysql connect -->
-        <mysql.connector.version>8.0.15</mysql.connector.version>
+        <mysql.connector.version>5.1.47</mysql.connector.version>
         <!-- log4j -->
         <log4j.version>1.2.17</log4j.version>
         <!-- junit -->
@@ -46,9 +46,21 @@
 
             <!-- log4j -->
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.12</version>
+            </dependency>
+
+            <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
+                <version>1.2.17</version>
             </dependency>
 
             <!--fastjson-->

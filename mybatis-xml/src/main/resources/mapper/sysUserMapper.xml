@@ -3,7 +3,7 @@
 
 <mapper namespace="com.bat.ibatis.dao.SysUserDao">
 
-    <select id="getSysUserPO" parameterType="string" resultType="com.bat.ibatis.po.SysUserPO">
+    <select id="getSysUserPO" parameterType="string" resultType="SysUserPO">
         select userUuid, username, password, email, phone, extInfo, img, createTime, updateTime from sys_user
     </select>
 

@@ -12,5 +12,5 @@ public interface SysUserDao {
 
     SysUserPO getSysUserPO(String userUuid);
 
-//    int postSysUser(SysUserPO sysUserPO);
+//    int insertSysUser(SysUserPO sysUserPO);
 }

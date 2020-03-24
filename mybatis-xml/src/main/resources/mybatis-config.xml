@@ -2,6 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
     <!-- 起别名方便配置 -->
     <typeAliases>
         <package name="com.bat.ibatis.po"/>
@@ -13,10 +17,16 @@
                 <property name="" value=""/>
             </transactionManager>
             <dataSource type="UNPOOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://192.168.9.102:3306/test_zhengyu"/>
                 <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="password" value="nYd*4M]ipIv+"/>
+
+                <!--
+                    <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis"/>
+                    <property name="username" value="root"/>
+                    <property name="password" value="123456"/>
+                -->
             </dataSource>
         </environment>
     </environments>
