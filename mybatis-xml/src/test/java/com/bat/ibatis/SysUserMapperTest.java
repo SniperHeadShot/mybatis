@@ -51,7 +51,11 @@ public class SysUserMapperTest {
 
         SysUserCondition condition = new SysUserCondition();
         //condition.setUserUuid("b317548a06f940e1861e40d6604ab304");
-        condition.setAccountName("张三");
+        //condition.setAccountName("张三");
+        condition.setUserUuidList(new ArrayList<String>(){{
+            //add("9ccb528ad22340198a13e2e82a75f9f6");
+            //add("5c229e18343a4176ad955235d8a4b9ff");
+        }});
 
         List<SysUserPO> sysUserList = sysUserDao.getSysUserList(condition);
         log.info("系统人员查询结果 ==> [{}]", JSONObject.toJSONString(sysUserList));

@@ -12,9 +12,14 @@ import java.util.List;
  **/
 public interface SysRoleDao {
 
-    List<SysRolePO> getSysRoleList();
-
-    SysRolePO getSysRole(String userUuid);
+    /**
+     * 获取系统人员的角色列表
+     *
+     * @param userUuid 系统用户UUID
+     * @return java.util.List<com.bat.ibatis.po.SysRolePO>
+     * @author ZhengYu
+     */
+    List<SysRolePO> getSysRoleByUserUuid(String userUuid);
 
     int insertSysRole(SysRolePO sysRolePO);
 }

@@ -1,5 +1,6 @@
 package com.bat.ibatis.dao;
 
+import com.bat.ibatis.po.SysRolePO;
 import com.bat.ibatis.po.SysUserCondition;
 import com.bat.ibatis.po.SysUserPO;
 
@@ -13,9 +14,30 @@ import java.util.List;
  **/
 public interface SysUserDao {
 
+    /**
+     * 获取系统人员列表
+     *
+     * @param sysUserCondition 检索条件
+     * @return java.util.List<com.bat.ibatis.po.SysUserPO>
+     * @author ZhengYu
+     */
     List<SysUserPO> getSysUserList(SysUserCondition sysUserCondition);
 
+    /**
+     * 新增系统人员
+     *
+     * @param sysUserPO 系统人员
+     * @return int
+     * @author ZhengYu
+     */
     int insertSysUser(SysUserPO sysUserPO);
 
+    /**
+     * 修改系统人员
+     *
+     * @param sysUserPO 系统人员
+     * @return int
+     * @author ZhengYu
+     */
     int updateSysUser(SysUserPO sysUserPO);
 }

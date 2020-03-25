@@ -2,6 +2,8 @@ package com.bat.ibatis.po;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 系统人员 Dao 查询条件
  *
@@ -27,4 +29,9 @@ public class SysUserCondition {
      * 账户可能是 username/email/phone
      */
     private String accountName;
+
+    /**
+     * 用户 UUID 集合
+     */
+    private List<String> userUuidList;
 }

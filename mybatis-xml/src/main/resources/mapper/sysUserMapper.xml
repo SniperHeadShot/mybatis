@@ -13,6 +13,13 @@
             <if test="username != null and username != ''">
                 and username like CONCAT('%',#{username},'%')
             </if>
+
+            <if test="userUuidList != null and userUuidList.size > 0">
+                and userUuid in
+                <foreach collection="userUuidList" open="(" close=")" separator="," item="userUuid" index="i">
+                    #{userUuid}
+                </foreach>
+            </if>
         </where>
     </select>
 
