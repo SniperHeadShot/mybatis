@@ -1,8 +1,8 @@
 package com.bat.ibatis.dao;
 
-import com.bat.ibatis.po.SysRolePO;
 import com.bat.ibatis.po.SysUserCondition;
 import com.bat.ibatis.po.SysUserPO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,6 +31,8 @@ public interface SysUserDao {
      * @author ZhengYu
      */
     int insertSysUser(SysUserPO sysUserPO);
+
+    int batchInsertSysUser(@Param("sysUserList") List<SysUserPO> sysUserList);
 
     /**
      * 修改系统人员

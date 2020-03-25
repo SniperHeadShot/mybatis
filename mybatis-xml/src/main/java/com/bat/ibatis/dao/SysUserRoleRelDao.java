@@ -12,7 +12,6 @@ import java.util.List;
  **/
 public interface SysUserRoleRelDao {
 
-    List<SysUserRoleRelPO> getSysUserRoleRel(String userUuid);
-
     int insertSysUserRoleRel(SysUserRoleRelPO sysUserRoleRelPO);
+
 }

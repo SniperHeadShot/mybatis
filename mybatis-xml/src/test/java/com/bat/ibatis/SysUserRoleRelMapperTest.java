@@ -1,6 +1,5 @@
 package com.bat.ibatis;
 
-import com.alibaba.fastjson.JSONObject;
 import com.bat.ibatis.dao.SysUserRoleRelDao;
 import com.bat.ibatis.po.SysUserRoleRelPO;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.List;
 
 /**
  * 测试
@@ -38,24 +36,13 @@ public class SysUserRoleRelMapperTest {
     }
 
     /*
-     * 系统人员与角色关系查询
-     */
-    @Test
-    public void testGetSysUserRoleRel() {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        SysUserRoleRelDao sysUserRoleRelDao = sqlSession.getMapper(SysUserRoleRelDao.class);
-        List<SysUserRoleRelPO> userRoleRelList = sysUserRoleRelDao.getSysUserRoleRel("9ccb528ad22340198a13e2e82a75f9f6");
-        log.info("系统人员与角色关系查询 ==> [{}]", JSONObject.toJSONString(userRoleRelList));
-    }
-
-    /*
      * 系统人员与角色关系添加
      */
     @Test
     public void testInsertSysUserRoleRel() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysUserRoleRelDao sysUserRoleRelDao = sqlSession.getMapper(SysUserRoleRelDao.class);
-        sysUserRoleRelDao.insertSysUserRoleRel(new SysUserRoleRelPO("9ccb528ad22340198a13e2e82a75f9f6","1e1f953ddc2b480c8b32719a0b36a2e7"));
+        sysUserRoleRelDao.insertSysUserRoleRel(new SysUserRoleRelPO("80a4317edd9c493887623e3723084c5f","a061617cc01b48c0b51a05ddbdebe886"));
         sqlSession.commit();
         log.info("系统人员与角色关系添加成功!");
     }

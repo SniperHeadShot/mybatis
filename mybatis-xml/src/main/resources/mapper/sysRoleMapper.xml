@@ -3,11 +3,14 @@
 
 <mapper namespace="com.bat.ibatis.dao.SysRoleDao">
 
-    <select id="getSysRoleByUserUuid" resultType="SysRolePO">
-        select s1.roleUuid, s1.roleName, s1.createTime, s1.updateTime, s3.userUuid, s3.username from sys_role s1
+    <resultMap id="sysRoleMap" type="SysRolePO">
+        <result property="sysUserRoleRel.userUuid" column="userUuid"/>
+    </resultMap>
+
+    <select id="getSysRoleByUserUuid" resultMap="sysRoleMap">
+        select s1.roleUuid, s1.roleName, s1.createTime, s1.updateTime, s2.userUuid from sys_role s1
         inner join sys_user_role_rel s2 on s2.roleUuid = s1.roleUuid
-        inner join sys_user s3 on s3.userUuid = s2.userUuid
-        where s3.userUuid = #{userUuid}
+        where s2.userUuid = #{userUuid}
     </select>
 
     <insert id="insertSysRole" parameterType="SysRolePO">

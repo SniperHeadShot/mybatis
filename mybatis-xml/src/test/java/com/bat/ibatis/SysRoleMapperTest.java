@@ -47,7 +47,7 @@ public class SysRoleMapperTest {
     public void testGetSysRoleList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysRoleDao sysRoleDao = sqlSession.getMapper(SysRoleDao.class);
-        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleByUserUuid("9ccb528ad22340198a13e2e82a75f9f6");
+        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleByUserUuid("80a4317edd9c493887623e3723084c5f");
         log.info("获取系统人员的角色列表查询结果 ==> [{}]", JSONObject.toJSONString(sysRoleList));
     }
 
@@ -58,8 +58,10 @@ public class SysRoleMapperTest {
     public void testInsertSysRole() {
         List<SysRolePO> sysUserList = new ArrayList<SysRolePO>(3) {{
             add(new SysRolePO(UuidUtil.createUuid(), "超级管理员", TimeUtil.getLocalDateTime()));
-            add(new SysRolePO(UuidUtil.createUuid(), "普通管理员", TimeUtil.getLocalDateTime()));
-            add(new SysRolePO(UuidUtil.createUuid(), "普通用户", TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "运维管理员", TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "研发部经理", TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "研发部成员", TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "测试部成员", TimeUtil.getLocalDateTime()));
         }};
 
         SqlSession sqlSession = sqlSessionFactory.openSession();

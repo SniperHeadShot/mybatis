@@ -35,8 +35,6 @@ CREATE TABLE `sys_user` (
   `password` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
-  `extInfo` text,
-  `img` varchar(50) DEFAULT NULL,
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`keyId`)

@@ -27,27 +27,34 @@
         insert into sys_user (userUuid, username, password, email, phone, createTime) values (#{userUuid}, #{username}, #{password}, #{email}, #{phone}, #{createTime})
     </insert>
 
+    <insert id="batchInsertSysUser">
+        insert into sys_user (userUuid, username, password, email, phone, createTime) values
+        <foreach collection="sysUserList" item="sysUser" separator=",">
+            (#{sysUser.userUuid}, #{sysUser.username}, #{sysUser.password}, #{sysUser.email}, #{sysUser.phone}, #{sysUser.createTime})
+        </foreach>
+    </insert>
+
     <update id="updateSysUser" parameterType="SysUserPO">
         update sys_user
         <set>
             <if test="username != null and username != ''">
-                username = #{username}
+                username = #{username},
             </if>
 
             <if test="password != null and password != ''">
-                password = #{password}
+                password = #{password},
             </if>
 
             <if test="email != null and email != ''">
-                email = #{email}
+                email = #{email},
             </if>
 
             <if test="phone != null and phone != ''">
-                phone = #{phone}
+                phone = #{phone},
             </if>
 
             <if test="updateTime != null and updateTime != ''">
-                updateTime = #{updateTime}
+                updateTime = #{updateTime},
             </if>
         </set>
         where userUuid = #{userUuid}

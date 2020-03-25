@@ -1,6 +1,7 @@
 package com.bat.ibatis.po;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 系统角色 PO类
@@ -9,6 +10,7 @@ import lombok.Data;
  * @version 1.0 2020/1/15 22:57
  **/
 @Data
+@NoArgsConstructor
 public class SysRolePO {
 
     private Long keyId;
@@ -21,8 +23,7 @@ public class SysRolePO {
 
     private String updateTime;
 
-    public SysRolePO() {
-    }
+    private SysUserRoleRelPO sysUserRoleRel;
 
     public SysRolePO(String roleUuid, String roleName, String createTime) {
         this.roleUuid = roleUuid;

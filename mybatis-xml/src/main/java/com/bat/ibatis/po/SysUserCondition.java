@@ -1,6 +1,7 @@
 package com.bat.ibatis.po;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @version 1.0 2020/1/14 22:45
  **/
 @Data
+@NoArgsConstructor
 public class SysUserCondition {
 
     private String userUuid;

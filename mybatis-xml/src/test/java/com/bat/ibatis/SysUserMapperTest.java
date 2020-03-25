@@ -52,7 +52,7 @@ public class SysUserMapperTest {
         SysUserCondition condition = new SysUserCondition();
         //condition.setUserUuid("b317548a06f940e1861e40d6604ab304");
         //condition.setAccountName("张三");
-        condition.setUserUuidList(new ArrayList<String>(){{
+        condition.setUserUuidList(new ArrayList<String>() {{
             //add("9ccb528ad22340198a13e2e82a75f9f6");
             //add("5c229e18343a4176ad955235d8a4b9ff");
         }});
@@ -66,8 +66,21 @@ public class SysUserMapperTest {
      */
     @Test
     public void testInsertSysUser() {
+        SysUserPO sysUser = new SysUserPO(UuidUtil.createUuid(), "张三", "111111", TimeUtil.getLocalDateTime());
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
+        int i = sysUserDao.insertSysUser(sysUser);
+        sqlSession.commit();
+        log.info("系统人员添加结果 ==> [{}]", i > 0);
+    }
+
+    /*
+     * 系统人员批量添加
+     */
+    @Test
+    public void testBatchInsertSysUser() {
         List<SysUserPO> sysUserList = new ArrayList<SysUserPO>(3) {{
-            add(new SysUserPO(UuidUtil.createUuid(), "张三", "111111", TimeUtil.getLocalDateTime()));
             add(new SysUserPO(UuidUtil.createUuid(), "李四", "222222", TimeUtil.getLocalDateTime()));
             add(new SysUserPO(UuidUtil.createUuid(), "王五", "333333", TimeUtil.getLocalDateTime()));
             add(new SysUserPO(UuidUtil.createUuid(), "赵六", "444444", TimeUtil.getLocalDateTime()));
@@ -75,9 +88,9 @@ public class SysUserMapperTest {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
-        sysUserList.forEach(sysUser -> sysUserDao.insertSysUser(sysUser));
+        int i = sysUserDao.batchInsertSysUser(sysUserList);
         sqlSession.commit();
-        log.info("系统人员添加成功!");
+        log.info("系统人员批量添加结果 ==> [{}]", i == sysUserList.size());
     }
 
     /*
@@ -85,17 +98,15 @@ public class SysUserMapperTest {
      */
     @Test
     public void testUpdateSysUser() {
-        List<SysUserPO> sysUserList = new ArrayList<SysUserPO>(3) {{
-            add(new SysUserPO(UuidUtil.createUuid(), "张三", "111111", TimeUtil.getLocalDateTime()));
-            add(new SysUserPO(UuidUtil.createUuid(), "李四", "222222", TimeUtil.getLocalDateTime()));
-            add(new SysUserPO(UuidUtil.createUuid(), "王五", "333333", TimeUtil.getLocalDateTime()));
-            add(new SysUserPO(UuidUtil.createUuid(), "赵六", "444444", TimeUtil.getLocalDateTime()));
-        }};
+        SysUserPO sysUser = new SysUserPO();
+        sysUser.setUserUuid("80948c87941c4f019f6dbf65b9df913c");
+        sysUser.setPhone("13671899478");
+        sysUser.setUpdateTime(TimeUtil.getLocalDateTime());
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
-        sysUserList.forEach(sysUser -> sysUserDao.insertSysUser(sysUser));
+        int i = sysUserDao.updateSysUser(sysUser);
         sqlSession.commit();
-        log.info("系统人员添加成功!");
+        log.info("系统人员更新结果 ==> [{}]", i > 0);
     }
 }
