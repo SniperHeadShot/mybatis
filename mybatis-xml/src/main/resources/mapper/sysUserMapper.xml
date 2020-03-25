@@ -5,9 +5,44 @@
 
     <select id="getSysUserList" resultType="SysUserPO">
         select userUuid, username, password, email, phone, createTime, updateTime from sys_user
+        <where>
+            <if test="accountName != null and accountName != ''">
+                and username = #{accountName} or email = #{accountName} or phone = #{accountName}
+            </if>
+
+            <if test="username != null and username != ''">
+                and username like CONCAT('%',#{username},'%')
+            </if>
+        </where>
     </select>
 
     <insert id="insertSysUser" parameterType="SysUserPO">
         insert into sys_user (userUuid, username, password, email, phone, createTime) values (#{userUuid}, #{username}, #{password}, #{email}, #{phone}, #{createTime})
     </insert>
+
+    <update id="updateSysUser" parameterType="SysUserPO">
+        update sys_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username}
+            </if>
+
+            <if test="password != null and password != ''">
+                password = #{password}
+            </if>
+
+            <if test="email != null and email != ''">
+                email = #{email}
+            </if>
+
+            <if test="phone != null and phone != ''">
+                phone = #{phone}
+            </if>
+
+            <if test="updateTime != null and updateTime != ''">
+                updateTime = #{updateTime}
+            </if>
+        </set>
+        where userUuid = #{userUuid}
+    </update>
 </mapper>

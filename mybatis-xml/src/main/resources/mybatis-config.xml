@@ -19,13 +19,13 @@
             <dataSource type="UNPOOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
 
-                <!--<property name="url" value="jdbc:mysql://192.168.9.102:3306/test_zhengyu"/>-->
-                <!--<property name="username" value="root"/>-->
-                <!--<property name="password" value="nYd*4M]ipIv+"/>-->
-
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?useSSL=false"/>
+                <property name="url" value="jdbc:mysql://192.168.9.102:3306/mysql?useSSL=false&amp;characterEncoding=utf-8"/>
                 <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="password" value="nYd*4M]ipIv+"/>
+
+                <!--<property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?useSSL=false&amp;characterEncoding=utf-8"/>-->
+                <!--<property name="username" value="root"/>-->
+                <!--<property name="password" value="123456"/>-->
             </dataSource>
         </environment>
     </environments>
@@ -34,6 +34,7 @@
         <!--扫描mapper配置-->
         <mapper resource="mapper/sysUserMapper.xml"/>
         <mapper resource="mapper/sysRoleMapper.xml"/>
+        <mapper resource="mapper/sysUserRoleRelMapper.xml"/>
 
         <!--不生效 TODO-->
         <!--<package name="mapper"/>-->

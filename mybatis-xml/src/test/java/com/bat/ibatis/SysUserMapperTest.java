@@ -2,6 +2,7 @@ package com.bat.ibatis;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bat.ibatis.dao.SysUserDao;
+import com.bat.ibatis.po.SysUserCondition;
 import com.bat.ibatis.po.SysUserPO;
 import com.bat.ibatis.util.TimeUtil;
 import com.bat.ibatis.util.UuidUtil;
@@ -47,7 +48,12 @@ public class SysUserMapperTest {
     public void testGetSysUserList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
-        List<SysUserPO> sysUserList = sysUserDao.getSysUserList();
+
+        SysUserCondition condition = new SysUserCondition();
+        //condition.setUserUuid("b317548a06f940e1861e40d6604ab304");
+        condition.setAccountName("张三");
+
+        List<SysUserPO> sysUserList = sysUserDao.getSysUserList(condition);
         log.info("系统人员查询结果 ==> [{}]", JSONObject.toJSONString(sysUserList));
     }
 
@@ -67,6 +73,25 @@ public class SysUserMapperTest {
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
         sysUserList.forEach(sysUser -> sysUserDao.insertSysUser(sysUser));
         sqlSession.commit();
-        log.info("系统角色添加成功!");
+        log.info("系统人员添加成功!");
+    }
+
+    /*
+     * 系统人员更新
+     */
+    @Test
+    public void testUpdateSysUser() {
+        List<SysUserPO> sysUserList = new ArrayList<SysUserPO>(3) {{
+            add(new SysUserPO(UuidUtil.createUuid(), "张三", "111111", TimeUtil.getLocalDateTime()));
+            add(new SysUserPO(UuidUtil.createUuid(), "李四", "222222", TimeUtil.getLocalDateTime()));
+            add(new SysUserPO(UuidUtil.createUuid(), "王五", "333333", TimeUtil.getLocalDateTime()));
+            add(new SysUserPO(UuidUtil.createUuid(), "赵六", "444444", TimeUtil.getLocalDateTime()));
+        }};
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
+        sysUserList.forEach(sysUser -> sysUserDao.insertSysUser(sysUser));
+        sqlSession.commit();
+        log.info("系统人员添加成功!");
     }
 }

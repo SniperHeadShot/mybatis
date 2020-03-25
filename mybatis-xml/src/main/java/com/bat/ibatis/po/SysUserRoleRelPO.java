@@ -16,4 +16,12 @@ public class SysUserRoleRelPO {
     private String userUuid;
 
     private String roleUuid;
+
+    public SysUserRoleRelPO() {
+    }
+
+    public SysUserRoleRelPO(String userUuid, String roleUuid) {
+        this.userUuid = userUuid;
+        this.roleUuid = roleUuid;
+    }
 }

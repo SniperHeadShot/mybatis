@@ -14,5 +14,7 @@ public interface SysRoleDao {
 
     List<SysRolePO> getSysRoleList();
 
+    SysRolePO getSysRole(String userUuid);
+
     int insertSysRole(SysRolePO sysRolePO);
 }

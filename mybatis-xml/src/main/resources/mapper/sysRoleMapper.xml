@@ -7,6 +7,10 @@
         select roleUuid, roleName, createTime, updateTime from sys_role
     </select>
 
+    <select id="getSysRole" resultType="SysRolePO">
+        select roleUuid, roleName, createTime, updateTime from sys_role
+    </select>
+
     <insert id="insertSysRole" parameterType="SysRolePO">
         insert into sys_role (roleUuid, roleName, createTime) values (#{roleUuid}, #{roleName}, #{createTime})
     </insert>
