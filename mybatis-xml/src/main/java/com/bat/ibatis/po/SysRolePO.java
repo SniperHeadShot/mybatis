@@ -23,8 +23,6 @@ public class SysRolePO {
 
     private String updateTime;
 
-    private SysUserRoleRelPO sysUserRoleRel;
-
     public SysRolePO(String roleUuid, String roleName, String createTime) {
         this.roleUuid = roleUuid;
         this.roleName = roleName;

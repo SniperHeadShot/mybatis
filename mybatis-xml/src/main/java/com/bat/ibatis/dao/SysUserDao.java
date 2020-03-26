@@ -21,7 +21,7 @@ public interface SysUserDao {
      * @return java.util.List<com.bat.ibatis.po.SysUserPO>
      * @author ZhengYu
      */
-    List<SysUserPO> getSysUserList(SysUserCondition sysUserCondition);
+    List<SysUserPO> getSysUserList(@Param("condition") SysUserCondition sysUserCondition);
 
     /**
      * 新增系统人员

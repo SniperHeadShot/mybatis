@@ -1,6 +1,7 @@
 package com.bat.ibatis.dao;
 
 import com.bat.ibatis.po.SysRolePO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface SysRoleDao {
      * @return java.util.List<com.bat.ibatis.po.SysRolePO>
      * @author ZhengYu
      */
-    List<SysRolePO> getSysRoleByUserUuid(String userUuid);
+    List<SysRolePO> getSysRoleByUserUuid(@Param("userUuid") String userUuid);
 
     int insertSysRole(SysRolePO sysRolePO);
 }

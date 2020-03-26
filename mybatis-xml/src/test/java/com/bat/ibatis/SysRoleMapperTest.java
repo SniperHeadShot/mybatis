@@ -47,7 +47,7 @@ public class SysRoleMapperTest {
     public void testGetSysRoleList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysRoleDao sysRoleDao = sqlSession.getMapper(SysRoleDao.class);
-        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleByUserUuid("80a4317edd9c493887623e3723084c5f");
+        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleByUserUuid("9284fd9ded1b4421a6c21d2da097186c");
         log.info("获取系统人员的角色列表查询结果 ==> [{}]", JSONObject.toJSONString(sysRoleList));
     }
 

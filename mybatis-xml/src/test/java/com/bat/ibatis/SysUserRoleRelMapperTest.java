@@ -42,7 +42,7 @@ public class SysUserRoleRelMapperTest {
     public void testInsertSysUserRoleRel() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysUserRoleRelDao sysUserRoleRelDao = sqlSession.getMapper(SysUserRoleRelDao.class);
-        sysUserRoleRelDao.insertSysUserRoleRel(new SysUserRoleRelPO("80a4317edd9c493887623e3723084c5f","a061617cc01b48c0b51a05ddbdebe886"));
+        sysUserRoleRelDao.insertSysUserRoleRel(new SysUserRoleRelPO("9284fd9ded1b4421a6c21d2da097186c","40efe4fa3cf2473ba2f5aa08bc2d8c82"));
         sqlSession.commit();
         log.info("系统人员与角色关系添加成功!");
     }

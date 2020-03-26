@@ -3,21 +3,28 @@
 
 <mapper namespace="com.bat.ibatis.dao.SysUserDao">
 
-    <select id="getSysUserList" resultType="SysUserPO">
-        select userUuid, username, password, email, phone, createTime, updateTime from sys_user
+    <resultMap id="sysUserMap" type="SysUserPO">
+        <!-- 指定主键的字段-->
+        <id property="userUuid" column="userUuid"/>
+        <collection property="sysRoleList" ofType="SysRolePO" select="com.bat.ibatis.dao.SysRoleDao.getSysRoleByUserUuid" column="{userUuid = userUuid}" fetchType="lazy"/>
+    </resultMap>
+
+    <select id="getSysUserList" resultMap="sysUserMap">
+        select s1.userUuid, s1.username, s1.password, s1.email, s1.phone, s1.createTime, s1.updateTime from sys_user s1
         <where>
-            <if test="accountName != null and accountName != ''">
-                and username = #{accountName} or email = #{accountName} or phone = #{accountName}
+            <if test="condition.accountName != null and condition.accountName != ''">
+                and s1.username = #{condition.accountName} or s1.email = #{condition.accountName} or s1.phone =
+                #{condition.accountName}
             </if>
 
-            <if test="username != null and username != ''">
-                and username like CONCAT('%',#{username},'%')
+            <if test="condition.username != null and condition.username != ''">
+                and s1.username like CONCAT('%',#{condition.username},'%')
             </if>
 
-            <if test="userUuidList != null and userUuidList.size > 0">
-                and userUuid in
+            <if test="condition.userUuidList != null and condition.userUuidList.size > 0">
+                and s1.userUuid in
                 <foreach collection="userUuidList" open="(" close=")" separator="," item="userUuid" index="i">
-                    #{userUuid}
+                    #{condition.userUuid}
                 </foreach>
             </if>
         </where>
@@ -30,7 +37,8 @@
     <insert id="batchInsertSysUser">
         insert into sys_user (userUuid, username, password, email, phone, createTime) values
         <foreach collection="sysUserList" item="sysUser" separator=",">
-            (#{sysUser.userUuid}, #{sysUser.username}, #{sysUser.password}, #{sysUser.email}, #{sysUser.phone}, #{sysUser.createTime})
+            (#{sysUser.userUuid}, #{sysUser.username}, #{sysUser.password}, #{sysUser.email}, #{sysUser.phone},
+            #{sysUser.createTime})
         </foreach>
     </insert>
 

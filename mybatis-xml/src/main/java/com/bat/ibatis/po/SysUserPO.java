@@ -3,6 +3,8 @@ package com.bat.ibatis.po;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * 系统人员 PO类
  *
@@ -28,6 +30,8 @@ public class SysUserPO {
     private String createTime;
 
     private String updateTime;
+
+    private List<SysRolePO> sysRoleList;
 
     public SysUserPO(String userUuid, String username, String password, String createTime) {
         this.userUuid = userUuid;

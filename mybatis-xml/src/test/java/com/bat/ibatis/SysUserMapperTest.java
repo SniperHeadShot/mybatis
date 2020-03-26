@@ -58,7 +58,12 @@ public class SysUserMapperTest {
         }});
 
         List<SysUserPO> sysUserList = sysUserDao.getSysUserList(condition);
-        log.info("系统人员查询结果 ==> [{}]", JSONObject.toJSONString(sysUserList));
+
+        List<SysUserPO> tempSysUserList = new ArrayList<>(sysUserList.size());
+        sysUserList.forEach(sysUser -> tempSysUserList.add(new SysUserPO(sysUser.getUserUuid(), sysUser.getUsername(), sysUser.getPassword(), sysUser.getCreateTime())));
+        log.info("不查用户角色列表的系统人员信息 ==> [{}]", JSONObject.toJSONString(tempSysUserList));
+
+        log.info("懒加载查询系统人员角色信息数据 ==> [{}]", JSONObject.toJSONString(sysUserList));
     }
 
     /*
@@ -99,7 +104,7 @@ public class SysUserMapperTest {
     @Test
     public void testUpdateSysUser() {
         SysUserPO sysUser = new SysUserPO();
-        sysUser.setUserUuid("80948c87941c4f019f6dbf65b9df913c");
+        sysUser.setUserUuid("9ccb528ad22340198a13e2e82a75f9f6");
         sysUser.setPhone("13671899478");
         sysUser.setUpdateTime(TimeUtil.getLocalDateTime());
 
