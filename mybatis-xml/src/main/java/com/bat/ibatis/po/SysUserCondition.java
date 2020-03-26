@@ -17,7 +17,7 @@ public class SysUserCondition {
 
     private String userUuid;
 
-    private String username;
+    private String userName;
 
     private String email;
 

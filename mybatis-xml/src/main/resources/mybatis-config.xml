@@ -19,7 +19,7 @@
             <dataSource type="UNPOOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
 
-                <property name="url" value="jdbc:mysql://192.168.9.102:3306/mysql?useSSL=false&amp;characterEncoding=utf-8"/>
+                <property name="url" value="jdbc:mysql://192.168.9.102:3306/data_center?useSSL=false&amp;characterEncoding=utf-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="nYd*4M]ipIv+"/>
 

@@ -2,6 +2,7 @@ package com.bat.ibatis;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bat.ibatis.dao.SysUserDao;
+import com.bat.ibatis.enums.SysUserTypeEnum;
 import com.bat.ibatis.po.SysUserCondition;
 import com.bat.ibatis.po.SysUserPO;
 import com.bat.ibatis.util.TimeUtil;
@@ -58,11 +59,6 @@ public class SysUserMapperTest {
         }});
 
         List<SysUserPO> sysUserList = sysUserDao.getSysUserList(condition);
-
-        List<SysUserPO> tempSysUserList = new ArrayList<>(sysUserList.size());
-        sysUserList.forEach(sysUser -> tempSysUserList.add(new SysUserPO(sysUser.getUserUuid(), sysUser.getUsername(), sysUser.getPassword(), sysUser.getCreateTime())));
-        log.info("不查用户角色列表的系统人员信息 ==> [{}]", JSONObject.toJSONString(tempSysUserList));
-
         log.info("懒加载查询系统人员角色信息数据 ==> [{}]", JSONObject.toJSONString(sysUserList));
     }
 
@@ -71,7 +67,7 @@ public class SysUserMapperTest {
      */
     @Test
     public void testInsertSysUser() {
-        SysUserPO sysUser = new SysUserPO(UuidUtil.createUuid(), "张三", "111111", TimeUtil.getLocalDateTime());
+        SysUserPO sysUser = new SysUserPO(UuidUtil.createUuid(), "张三", SysUserTypeEnum.SYSTEM.getCode(), "111111", null, null, TimeUtil.getLocalDateTime());
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
@@ -86,9 +82,9 @@ public class SysUserMapperTest {
     @Test
     public void testBatchInsertSysUser() {
         List<SysUserPO> sysUserList = new ArrayList<SysUserPO>(3) {{
-            add(new SysUserPO(UuidUtil.createUuid(), "李四", "222222", TimeUtil.getLocalDateTime()));
-            add(new SysUserPO(UuidUtil.createUuid(), "王五", "333333", TimeUtil.getLocalDateTime()));
-            add(new SysUserPO(UuidUtil.createUuid(), "赵六", "444444", TimeUtil.getLocalDateTime()));
+            add(new SysUserPO(UuidUtil.createUuid(), "李四", SysUserTypeEnum.SYSTEM.getCode(), "222222", null, null, TimeUtil.getLocalDateTime()));
+            add(new SysUserPO(UuidUtil.createUuid(), "王五", SysUserTypeEnum.SYSTEM.getCode(), "333333", null, null, TimeUtil.getLocalDateTime()));
+            add(new SysUserPO(UuidUtil.createUuid(), "赵六", SysUserTypeEnum.VISITOR.getCode(), "444444", null, null, TimeUtil.getLocalDateTime()));
         }};
 
         SqlSession sqlSession = sqlSessionFactory.openSession();

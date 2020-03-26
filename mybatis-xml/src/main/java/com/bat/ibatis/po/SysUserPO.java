@@ -19,7 +19,9 @@ public class SysUserPO {
 
     private String userUuid;
 
-    private String username;
+    private String userName;
+
+    private String userType;
 
     private String password;
 
@@ -33,10 +35,15 @@ public class SysUserPO {
 
     private List<SysRolePO> sysRoleList;
 
-    public SysUserPO(String userUuid, String username, String password, String createTime) {
+    public SysUserPO(String userUuid, String userName, String userType, String password, String email, String phone, String createTime) {
         this.userUuid = userUuid;
-        this.username = username;
+        this.userName = userName;
+        this.userType = userType;
         this.password = password;
+        this.email = email;
+        this.phone = phone;
         this.createTime = createTime;
     }
+
+
 }

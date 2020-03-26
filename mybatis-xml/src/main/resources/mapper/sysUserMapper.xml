@@ -5,12 +5,14 @@
 
     <resultMap id="sysUserMap" type="SysUserPO">
         <!-- 指定主键的字段-->
-        <id property="userUuid" column="userUuid"/>
-        <collection property="sysRoleList" ofType="SysRolePO" select="com.bat.ibatis.dao.SysRoleDao.getSysRoleByUserUuid" column="{userUuid = userUuid}" fetchType="lazy"/>
+        <id property="userUuid" column="user_uuid"/>
+        <collection property="sysRoleList" ofType="SysRolePO"
+                    select="com.bat.ibatis.dao.SysRoleDao.getSysRoleByUserUuid" column="{userUuid = user_uuid}"
+                    fetchType="lazy"/>
     </resultMap>
 
     <select id="getSysUserList" resultMap="sysUserMap">
-        select s1.userUuid, s1.username, s1.password, s1.email, s1.phone, s1.createTime, s1.updateTime from sys_user s1
+        select s1.user_uuid, s1.user_name, s1.user_type, s1.password, s1.email, s1.phone, s1.create_time, s1.update_time from sys_user s1
         <where>
             <if test="condition.accountName != null and condition.accountName != ''">
                 and s1.username = #{condition.accountName} or s1.email = #{condition.accountName} or s1.phone =
@@ -18,11 +20,11 @@
             </if>
 
             <if test="condition.username != null and condition.username != ''">
-                and s1.username like CONCAT('%',#{condition.username},'%')
+                and s1.user_name like CONCAT('%',#{condition.userName},'%')
             </if>
 
             <if test="condition.userUuidList != null and condition.userUuidList.size > 0">
-                and s1.userUuid in
+                and s1.user_uuid in
                 <foreach collection="userUuidList" open="(" close=")" separator="," item="userUuid" index="i">
                     #{condition.userUuid}
                 </foreach>
@@ -31,14 +33,14 @@
     </select>
 
     <insert id="insertSysUser" parameterType="SysUserPO">
-        insert into sys_user (userUuid, username, password, email, phone, createTime) values (#{userUuid}, #{username}, #{password}, #{email}, #{phone}, #{createTime})
+        insert into sys_user (user_uuid, user_name, user_type, password, email, phone, create_time) values (#{userUuid}, #{userName}, #{userType}, #{password}, #{email}, #{phone}, #{createTime})
     </insert>
 
     <insert id="batchInsertSysUser">
-        insert into sys_user (userUuid, username, password, email, phone, createTime) values
+        insert into sys_user (user_uuid, user_name, user_type, password, email, phone, create_time) values
         <foreach collection="sysUserList" item="sysUser" separator=",">
-            (#{sysUser.userUuid}, #{sysUser.username}, #{sysUser.password}, #{sysUser.email}, #{sysUser.phone},
-            #{sysUser.createTime})
+            (#{sysUser.userUuid}, #{sysUser.userName}, #{sysUser.userType}, #{sysUser.password}, #{sysUser.email},
+            #{sysUser.phone}, #{sysUser.createTime})
         </foreach>
     </insert>
 
@@ -46,7 +48,11 @@
         update sys_user
         <set>
             <if test="username != null and username != ''">
-                username = #{username},
+                user_name = #{userName},
+            </if>
+
+            <if test="userType != null and userType != ''">
+                user_type = #{userType},
             </if>
 
             <if test="password != null and password != ''">
@@ -62,7 +68,7 @@
             </if>
 
             <if test="updateTime != null and updateTime != ''">
-                updateTime = #{updateTime},
+                update_time = #{updateTime},
             </if>
         </set>
         where userUuid = #{userUuid}
