@@ -2,6 +2,7 @@ package com.bat.ibatis;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bat.ibatis.dao.SysRoleDao;
+import com.bat.ibatis.enums.SysEnableEnum;
 import com.bat.ibatis.po.SysRolePO;
 import com.bat.ibatis.util.TimeUtil;
 import com.bat.ibatis.util.UuidUtil;
@@ -47,7 +48,7 @@ public class SysRoleMapperTest {
     public void testGetSysRoleList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         SysRoleDao sysRoleDao = sqlSession.getMapper(SysRoleDao.class);
-        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleByUserUuid("9284fd9ded1b4421a6c21d2da097186c");
+        List<SysRolePO> sysRoleList = sysRoleDao.getSysRoleByUserUuid("8d399977e7a243438a94d254fbe95190");
         log.info("获取系统人员的角色列表查询结果 ==> [{}]", JSONObject.toJSONString(sysRoleList));
     }
 
@@ -57,11 +58,11 @@ public class SysRoleMapperTest {
     @Test
     public void testInsertSysRole() {
         List<SysRolePO> sysUserList = new ArrayList<SysRolePO>(3) {{
-            add(new SysRolePO(UuidUtil.createUuid(), "超级管理员", TimeUtil.getLocalDateTime()));
-            add(new SysRolePO(UuidUtil.createUuid(), "运维管理员", TimeUtil.getLocalDateTime()));
-            add(new SysRolePO(UuidUtil.createUuid(), "研发部经理", TimeUtil.getLocalDateTime()));
-            add(new SysRolePO(UuidUtil.createUuid(), "研发部成员", TimeUtil.getLocalDateTime()));
-            add(new SysRolePO(UuidUtil.createUuid(), "测试部成员", TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "超级管理员", SysEnableEnum.ENABLE.getCode(), TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "运维管理员", SysEnableEnum.ENABLE.getCode(), TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "研发部经理", SysEnableEnum.ENABLE.getCode(), TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "研发部成员", SysEnableEnum.ENABLE.getCode(), TimeUtil.getLocalDateTime()));
+            add(new SysRolePO(UuidUtil.createUuid(), "测试部成员", SysEnableEnum.ENABLE.getCode(), TimeUtil.getLocalDateTime()));
         }};
 
         SqlSession sqlSession = sqlSessionFactory.openSession();

@@ -6,13 +6,21 @@
     <resultMap id="sysUserMap" type="SysUserPO">
         <!-- 指定主键的字段-->
         <id property="userUuid" column="user_uuid"/>
+        <result property="userName" column="user_name"/>
+        <result property="userType" column="user_type"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
         <collection property="sysRoleList" ofType="SysRolePO"
                     select="com.bat.ibatis.dao.SysRoleDao.getSysRoleByUserUuid" column="{userUuid = user_uuid}"
                     fetchType="lazy"/>
     </resultMap>
 
     <select id="getSysUserList" resultMap="sysUserMap">
-        select s1.user_uuid, s1.user_name, s1.user_type, s1.password, s1.email, s1.phone, s1.create_time, s1.update_time from sys_user s1
+        select s1.user_uuid, s1.user_name, s1.user_type, s1.password, s1.email, s1.phone, s1.create_time, s1.update_time
+        from sys_user s1
         <where>
             <if test="condition.accountName != null and condition.accountName != ''">
                 and s1.username = #{condition.accountName} or s1.email = #{condition.accountName} or s1.phone =
@@ -47,7 +55,7 @@
     <update id="updateSysUser" parameterType="SysUserPO">
         update sys_user
         <set>
-            <if test="username != null and username != ''">
+            <if test="userName != null and userName != ''">
                 user_name = #{userName},
             </if>
 
@@ -71,6 +79,6 @@
                 update_time = #{updateTime},
             </if>
         </set>
-        where userUuid = #{userUuid}
+        where user_uuid = #{userUuid}
     </update>
 </mapper>

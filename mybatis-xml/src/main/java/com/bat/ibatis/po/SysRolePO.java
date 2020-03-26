@@ -19,13 +19,16 @@ public class SysRolePO {
 
     private String roleName;
 
+    private Integer enabled;
+
     private String createTime;
 
     private String updateTime;
 
-    public SysRolePO(String roleUuid, String roleName, String createTime) {
+    public SysRolePO(String roleUuid, String roleName, Integer enabled, String createTime) {
         this.roleUuid = roleUuid;
         this.roleName = roleName;
+        this.enabled = enabled;
         this.createTime = createTime;
     }
 }

@@ -100,7 +100,7 @@ public class SysUserMapperTest {
     @Test
     public void testUpdateSysUser() {
         SysUserPO sysUser = new SysUserPO();
-        sysUser.setUserUuid("9ccb528ad22340198a13e2e82a75f9f6");
+        sysUser.setUserUuid("8d399977e7a243438a94d254fbe95190");
         sysUser.setPhone("13671899478");
         sysUser.setUpdateTime(TimeUtil.getLocalDateTime());
 
