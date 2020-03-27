@@ -9,7 +9,7 @@ package com.bat.ibatis.enums;
 public enum SysEnableEnum {
 
     ENABLE(1, 0, "禁用[某项不生效]"),
-    DISENABLE(2, 1, "启用[某项生效]"),
+    DIS_ENABLE(2, 1, "启用[某项生效]"),
     ;
 
     SysEnableEnum(Integer index, Integer code, String value) {

@@ -4,7 +4,7 @@
 <mapper namespace="com.bat.ibatis.dao.SysUserRoleRelDao">
 
     <insert id="insertSysUserRoleRel" parameterType="SysUserRoleRelPO">
-        insert into sys_user_role_rel (userUuid, roleUuid) values (#{userUuid}, #{roleUuid})
+        insert into sys_user_role_rel (user_uuid, role_uuid) values (#{userUuid}, #{roleUuid})
     </insert>
 
 </mapper>
