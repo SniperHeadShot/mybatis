@@ -5,6 +5,7 @@ import com.bat.ibatis.dao.SysUserDao;
 import com.bat.ibatis.enums.SysUserTypeEnum;
 import com.bat.ibatis.po.SysUserCondition;
 import com.bat.ibatis.po.SysUserPO;
+import com.bat.ibatis.util.SqlSessionUtil;
 import com.bat.ibatis.util.TimeUtil;
 import com.bat.ibatis.util.UuidUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -29,25 +30,12 @@ import java.util.List;
 @Slf4j
 public class SysUserMapperTest {
 
-    private static SqlSessionFactory sqlSessionFactory;
-
-    @BeforeClass
-    public static void init() {
-        try {
-            Reader resourceAsReader = Resources.getResourceAsReader("mybatis-config.xml");
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsReader);
-            resourceAsReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /*
      * 系统人员查询
      */
     @Test
     public void testGetSysUserList() {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
 
         SysUserCondition condition = new SysUserCondition();
@@ -69,7 +57,7 @@ public class SysUserMapperTest {
     public void testInsertSysUser() {
         SysUserPO sysUser = new SysUserPO(UuidUtil.createUuid(), "张三", SysUserTypeEnum.SYSTEM.getCode(), "111111", null, null, TimeUtil.getLocalDateTime());
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
         int i = sysUserDao.insertSysUser(sysUser);
         sqlSession.commit();
@@ -87,7 +75,7 @@ public class SysUserMapperTest {
             add(new SysUserPO(UuidUtil.createUuid(), "赵六", SysUserTypeEnum.VISITOR.getCode(), "444444", null, null, TimeUtil.getLocalDateTime()));
         }};
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
         int i = sysUserDao.batchInsertSysUser(sysUserList);
         sqlSession.commit();
@@ -104,7 +92,7 @@ public class SysUserMapperTest {
         sysUser.setPhone("13671899478");
         sysUser.setUpdateTime(TimeUtil.getLocalDateTime());
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         SysUserDao sysUserDao = sqlSession.getMapper(SysUserDao.class);
         int i = sysUserDao.updateSysUser(sysUser);
         sqlSession.commit();
