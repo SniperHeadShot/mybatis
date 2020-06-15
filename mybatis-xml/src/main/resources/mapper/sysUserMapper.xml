@@ -5,14 +5,14 @@
 
     <resultMap id="sysUserMap" type="SysUserPO">
         <!-- 指定主键的字段-->
-        <id property="userUuid" column="user_uuid"/>
-        <result property="userName" column="user_name"/>
-        <result property="userType" column="user_type"/>
-        <result property="password" column="password"/>
-        <result property="email" column="email"/>
-        <result property="phone" column="phone"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <!--<id property="userUuid" column="user_uuid"/>-->
+        <!--<result property="userName" column="user_name"/>-->
+        <!--<result property="userType" column="user_type"/>-->
+        <!--<result property="password" column="password"/>-->
+        <!--<result property="email" column="email"/>-->
+        <!--<result property="phone" column="phone"/>-->
+        <!--<result property="createTime" column="create_time"/>-->
+        <!--<result property="updateTime" column="update_time"/>-->
         <collection property="sysRoleList" ofType="SysRolePO"
                     select="com.bat.ibatis.dao.SysRoleDao.getSysRoleByUserUuid" column="{userUuid = user_uuid}"
                     fetchType="lazy"/>
