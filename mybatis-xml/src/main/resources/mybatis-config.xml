@@ -14,7 +14,7 @@
 
     <!-- 起别名方便配置 -->
     <typeAliases>
-        <package name="com.bat.ibatis.po"/>
+        <package name="com.bat.ibatis.entity"/>
 
         <!---->
 

@@ -6,16 +6,23 @@
         <artifactId>mybatis</artifactId>
         <groupId>com.bat.ibatis</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>mybatis-xml</artifactId>
+    <version>${project.version}</version>
 
     <dependencies>
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
+        </dependency>
+
+        <!-- mybatis generator -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
         </dependency>
 
         <!-- mysql -->
