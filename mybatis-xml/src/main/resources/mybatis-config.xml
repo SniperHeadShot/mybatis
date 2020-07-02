@@ -10,6 +10,8 @@
 
         <!--是否开启驼峰命名自动映射-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <!-- 起别名方便配置 -->

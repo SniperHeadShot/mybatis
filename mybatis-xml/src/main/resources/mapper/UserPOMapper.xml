@@ -3,6 +3,7 @@
 <mapper namespace="com.bat.ibatis.dao.UserPOMapper">
 
     <resultMap id="BaseResultMap" type="com.bat.ibatis.entity.UserPO">
+        <association property=""
         <result column="user_uuid" property="userUuid" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
