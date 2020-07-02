@@ -15,9 +15,6 @@
     <!-- 起别名方便配置 -->
     <typeAliases>
         <package name="com.bat.ibatis.entity"/>
-
-        <!---->
-
     </typeAliases>
 
     <environments default="company">
@@ -37,9 +34,8 @@
 
     <mappers>
         <!--扫描mapper配置-->
-        <mapper resource="mapper/sysUserMapper.xml"/>
-        <mapper resource="mapper/sysRoleMapper.xml"/>
-        <mapper resource="mapper/sysUserRoleRelMapper.xml"/>
+        <mapper resource="mapper/UserPOMapper.xml"/>
+        <mapper resource="mapper/UserDetailPOMapper.xml"/>
 
         <!--不生效 TODO-->
         <!--<package name="mapper"/>-->

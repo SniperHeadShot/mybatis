@@ -1,149 +1,108 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bat.ibatis.dao.UserPOMapper" >
-  <insert id="insert" parameterType="com.bat.ibatis.entity.UserPO" >
-    insert into t_user (key_id, user_uuid, user_name, 
-      password, phone, email, 
-      account_expired, password_expired, locked, 
-      enabled, create_time, update_time
-      )
-    values (#{keyId,jdbcType=BIGINT}, #{userUuid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{accountExpired,jdbcType=BIT}, #{passwordExpired,jdbcType=BIT}, #{locked,jdbcType=BIT}, 
-      #{enabled,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.bat.ibatis.entity.UserPO" >
-    insert into t_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="keyId != null" >
-        key_id,
-      </if>
-      <if test="userUuid != null" >
-        user_uuid,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="accountExpired != null" >
-        account_expired,
-      </if>
-      <if test="passwordExpired != null" >
-        password_expired,
-      </if>
-      <if test="locked != null" >
-        locked,
-      </if>
-      <if test="enabled != null" >
-        enabled,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="keyId != null" >
-        #{keyId,jdbcType=BIGINT},
-      </if>
-      <if test="userUuid != null" >
-        #{userUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="accountExpired != null" >
-        #{accountExpired,jdbcType=BIT},
-      </if>
-      <if test="passwordExpired != null" >
-        #{passwordExpired,jdbcType=BIT},
-      </if>
-      <if test="locked != null" >
-        #{locked,jdbcType=BIT},
-      </if>
-      <if test="enabled != null" >
-        #{enabled,jdbcType=BIT},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bat.ibatis.entity.UserPO" >
-    update t_user
-    <set >
-      <if test="userUuid != null" >
-        user_uuid = #{userUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="accountExpired != null" >
-        account_expired = #{accountExpired,jdbcType=BIT},
-      </if>
-      <if test="passwordExpired != null" >
-        password_expired = #{passwordExpired,jdbcType=BIT},
-      </if>
-      <if test="locked != null" >
-        locked = #{locked,jdbcType=BIT},
-      </if>
-      <if test="enabled != null" >
-        enabled = #{enabled,jdbcType=BIT},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where key_id = #{keyId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bat.ibatis.entity.UserPO" >
-    update t_user
-    set user_uuid = #{userUuid,jdbcType=VARCHAR},
-      user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      account_expired = #{accountExpired,jdbcType=BIT},
-      password_expired = #{passwordExpired,jdbcType=BIT},
-      locked = #{locked,jdbcType=BIT},
-      enabled = #{enabled,jdbcType=BIT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where key_id = #{keyId,jdbcType=BIGINT}
-  </update>
+<mapper namespace="com.bat.ibatis.dao.UserPOMapper">
+
+    <resultMap id="BaseResultMap" type="com.bat.ibatis.entity.UserPO">
+        <result column="user_uuid" property="userUuid" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="account_expired" property="accountExpired" jdbcType="BIT"/>
+        <result column="password_expired" property="passwordExpired" jdbcType="BIT"/>
+        <result column="locked" property="locked" jdbcType="BIT"/>
+        <result column="enabled" property="enabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    user_uuid, user_name, password, phone, email, account_expired, password_expired, locked, enabled
+  </sql>
+
+    <!--列表查询-->
+    <select id="queryUserList" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>, create_time, update_time
+        from t_user
+        <where>
+            <if test="userUuid != null and userUuid != ''">
+                and user_uuid = #{userUuid}
+            </if>
+            <if test="userUuidList != null and userUuidList.size > 0">
+                and user_uuid in
+                <foreach collection="userUuidList" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%', #{userName}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <!--批量插入-->
+    <insert id="batchInsertUser" parameterType="UserPO">
+        insert into t_user (<include refid="Base_Column_List"/>)
+        values
+        <foreach collection="userList" item="item" separator=",">
+            (#{item.userUuid,jdbcType=VARCHAR}, #{item.userName,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR},
+            #{item.phone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR},#{item.accountExpired,jdbcType=BIT},
+            #{item.passwordExpired,jdbcType=BIT}, #{item.locked,jdbcType=BIT},#{item.enabled,jdbcType=BIT})
+        </foreach>
+    </insert>
+
+    <!--更新用户-->
+    <update id="updateUser" parameterType="UserPO">
+        update t_user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="accountExpired != null">
+                account_expired = #{accountExpired,jdbcType=BIT},
+            </if>
+            <if test="passwordExpired != null">
+                password_expired = #{passwordExpired,jdbcType=BIT},
+            </if>
+            <if test="locked != null">
+                locked = #{locked,jdbcType=BIT},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=BIT},
+            </if>
+        </set>
+        where user_uuid = #{userUuid,jdbcType=VARCHAR}
+    </update>
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="UserDelete">
+        delete from t_user
+        <where>
+            <if test="userUuid != null and userUuid != ''">
+                and user_uuid = #{userUuid}
+            </if>
+            <if test="userUuidList != null and userUuidList.size > 0">
+                and user_uuid in
+                <foreach collection="userUuidList" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
 </mapper>

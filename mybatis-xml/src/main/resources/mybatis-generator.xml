@@ -41,13 +41,16 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="t_user" domainObjectName="UserPO"
-               enableDeleteByPrimaryKey="false"
-               enableSelectByPrimaryKey="false"
+        <table tableName="t_user_detail" domainObjectName="UserDetailPO"
+               enableDeleteByPrimaryKey="true"
+               enableSelectByPrimaryKey="true"
                selectByExampleQueryId="false"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
-               enableSelectByExample="false"/>
+               enableSelectByExample="false">
+            <columnOverride column="create_time" javaType="String"/>
+            <columnOverride column="update_time" javaType="String"/>
+        </table>
     </context>
 </generatorConfiguration>

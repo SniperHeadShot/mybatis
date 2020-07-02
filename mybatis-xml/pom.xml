@@ -19,6 +19,12 @@
             <artifactId>mybatis</artifactId>
         </dependency>
 
+        <!--page helper-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+
         <!-- mybatis generator -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
