@@ -25,12 +25,12 @@ import java.util.stream.IntStream;
 public class UserPOTest {
 
     /**
-     * 测试 - 查询
+     * 测试 - 查询 - 一级缓存
      *
      * @author ZhengYu
      */
     @Test
-    public void testQueryList() {
+    public void testQueryOneLevelCacheList() {
         SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         UserPOMapper userDao = sqlSession.getMapper(UserPOMapper.class);
         // TODO 此分页插件无效
@@ -41,9 +41,48 @@ public class UserPOTest {
             add("ceafd0fbbecd4002b7fb6e9e680f819c");
             add("73b1d0d9442a4254a9630be8a087bf5e");
         }});
-        userQuery.setUserName("user001");
-        List<UserPO> userList = userDao.queryUserList(userQuery);
-        log.info("查询到的用户数: [{}], 总数: [{}]", userList == null ? 0 : userList.size(), startPage.getTotal());
+
+        // 第一次获取
+        List<UserPO> result1 = userDao.queryUserList(userQuery);
+        log.info("第1次查询到的用户数: [{}], 总数: [{}]", result1 == null ? 0 : result1.size(), startPage.getTotal());
+
+        // 第二次获取
+        List<UserPO> result2 = userDao.queryUserList(userQuery);
+        log.info("第2次查询到的用户数: [{}], 总数: [{}]", result2 == null ? 0 : result2.size(), startPage.getTotal());
+
+        log.info("第一次与第二次的结果是否相等: [{}]", result1 == result2);
+        sqlSession.close();
+    }
+
+    /**
+     * 测试 - 查询 - 二级缓存
+     *
+     * @author ZhengYu
+     */
+    @Test
+    public void testQueryTwoLevelCacheList() {
+        UserQuery userQuery = new UserQuery();
+        userQuery.setUserUuidList(new ArrayList<String>(2) {{
+            add("259b337b86ad4440ba8cdc1525cfea6e");
+            add("ceafd0fbbecd4002b7fb6e9e680f819c");
+            add("73b1d0d9442a4254a9630be8a087bf5e");
+        }});
+
+        List<List<UserPO>> result = new ArrayList<>(3);
+
+        // 测试缓存
+        IntStream.rangeClosed(1, 3).forEach(index -> {
+            SqlSession sqlSession = SqlSessionUtil.openSqlSession();
+            UserPOMapper userDao = sqlSession.getMapper(UserPOMapper.class);
+            // TODO 此分页插件无效
+            Page<Object> startPage = PageHelper.startPage(1, 10);
+            List<UserPO> userList = userDao.queryUserList(userQuery);
+            result.add(userList);
+            log.info("第 [{}] 次查询到的用户数: [{}], 总数: [{}]", index, userList == null ? 0 : userList.size(), startPage.getTotal());
+            sqlSession.close();
+        });
+
+        log.info("第一次与第二次的结果是否相等: [{}]", result.get(0) == result.get(1));
     }
 
     /**
@@ -58,6 +97,7 @@ public class UserPOTest {
         int count = userDao.batchInsertUser(buildUserList());
         sqlSession.commit();
         log.info("批量插入: [{}] 条用户数据", count);
+        sqlSession.close();
     }
 
     /**
@@ -72,6 +112,7 @@ public class UserPOTest {
         int count = userDao.deleteUser(null);
         log.info("删除用户数据: [{}] 条", count);
         sqlSession.commit();
+        sqlSession.close();
     }
 
     private List<UserPO> buildUserList() {

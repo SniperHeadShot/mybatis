@@ -12,6 +12,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
 
         <setting name="aggressiveLazyLoading" value="false"/>
+
+        <!--是否打开二级缓存, 默认关闭-->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
 
     <!-- 起别名方便配置 -->
