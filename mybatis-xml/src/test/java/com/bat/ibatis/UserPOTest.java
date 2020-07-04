@@ -2,6 +2,7 @@ package com.bat.ibatis;
 
 import com.bat.ibatis.dao.UserPOMapper;
 import com.bat.ibatis.entity.UserPO;
+import com.bat.ibatis.entity.UserQuery;
 import com.bat.ibatis.util.SqlSessionUtil;
 import com.bat.ibatis.util.UuidUtil;
 import com.github.pagehelper.Page;
@@ -34,7 +35,14 @@ public class UserPOTest {
         UserPOMapper userDao = sqlSession.getMapper(UserPOMapper.class);
         // TODO 此分页插件无效
         Page<Object> startPage = PageHelper.startPage(1, 10);
-        List<UserPO> userList = userDao.queryUserList(null);
+        UserQuery userQuery = new UserQuery();
+        userQuery.setUserUuidList(new ArrayList<String>(2) {{
+            add("259b337b86ad4440ba8cdc1525cfea6e");
+            add("ceafd0fbbecd4002b7fb6e9e680f819c");
+            add("73b1d0d9442a4254a9630be8a087bf5e");
+        }});
+        userQuery.setUserName("user001");
+        List<UserPO> userList = userDao.queryUserList(userQuery);
         log.info("查询到的用户数: [{}], 总数: [{}]", userList == null ? 0 : userList.size(), startPage.getTotal());
     }
 

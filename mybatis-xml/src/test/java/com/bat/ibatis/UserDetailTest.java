@@ -22,7 +22,7 @@ public class UserDetailTest {
     private static final String USER_UUID = "440db2543c5544bca7ca29324769bcd3";
 
     /**
-     * 测试 - 查询
+     * 测试 - 查询{@link org.apache.ibatis.builder.xml.XMLMapperBuilder#parse()}
      *
      * @author ZhengYu
      */

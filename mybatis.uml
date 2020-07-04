@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.ibatis.binding.MapperProxy</OriginalElement>
+  <nodes>
+    <node x="70.5" y="80.0">org.apache.ibatis.binding.MapperProxy</node>
+    <node x="219.0" y="155.0">org.apache.ibatis.executor.Executor</node>
+    <node x="196.0" y="235.0">org.apache.ibatis.executor.CachingExecutor</node>
+    <node x="214.0" y="310.0">org.apache.ibatis.session.Configuration</node>
+    <node x="0.0" y="310.0">org.apache.ibatis.binding.MapperProxyFactory</node>
+    <node x="0.0" y="235.0">org.apache.ibatis.session.defaults.DefaultSqlSession</node>
+    <node x="134.0" y="0.0">java.lang.reflect.InvocationHandler</node>
+    <node x="20.5" y="155.0">org.apache.ibatis.session.SqlSession</node>
+    <node x="0.0" y="0.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.apache.ibatis.binding.MapperProxy" target="java.lang.reflect.InvocationHandler">
+      <point x="31.75" y="-15.0" />
+      <point x="165.75" y="55.0" />
+      <point x="211.0" y="55.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.ibatis.binding.MapperProxy" target="java.io.Serializable">
+      <point x="-31.75" y="-15.0" />
+      <point x="102.25" y="55.0" />
+      <point x="57.0" y="55.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.ibatis.executor.CachingExecutor" target="org.apache.ibatis.executor.Executor">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.ibatis.session.defaults.DefaultSqlSession" target="org.apache.ibatis.session.SqlSession">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="144.0" y="170.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

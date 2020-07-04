@@ -32,6 +32,8 @@
         <fastjson.version>1.2.47</fastjson.version>
         <!-- lombok -->
         <lombok.version>1.18.8</lombok.version>
+        <!--apache commonUtils-->
+        <commons.lang3.version>3.8.1</commons.lang3.version>
     </properties>
 
     <dependencyManagement>
@@ -93,6 +95,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- apache commonUtils -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
             </dependency>
 
             <!-- junit -->

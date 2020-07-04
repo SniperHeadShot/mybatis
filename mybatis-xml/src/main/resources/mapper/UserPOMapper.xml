@@ -3,7 +3,6 @@
 <mapper namespace="com.bat.ibatis.dao.UserPOMapper">
 
     <resultMap id="BaseResultMap" type="com.bat.ibatis.entity.UserPO">
-        <association property=""
         <result column="user_uuid" property="userUuid" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
@@ -21,8 +20,8 @@
     user_uuid, user_name, password, phone, email, account_expired, password_expired, locked, enabled
   </sql>
 
-    <!--列表查询-->
-    <select id="queryUserList" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <!-- 列表查询 -->
+    <select id="queryUserList" resultMap="BaseResultMap" parameterType="UserQuery">
         select
         <include refid="Base_Column_List"/>, create_time, update_time
         from t_user
@@ -30,19 +29,21 @@
             <if test="userUuid != null and userUuid != ''">
                 and user_uuid = #{userUuid}
             </if>
-            <if test="userUuidList != null and userUuidList.size > 0">
+            <if test="userUuidList != null and userUuidList.size() > 0">
                 and user_uuid in
                 <foreach collection="userUuidList" item="item" open="(" close=")" separator=",">
                     #{item}
                 </foreach>
             </if>
             <if test="userName != null and userName != ''">
-                and user_name like concat('%', #{userName}, '%')
+                /* 由于不同数据库之间的差异[concat('%', #{userName}, '%')只适用mysql数据库] */
+                <bind name="userNameLike" value="'%' + userName + '%'"/>
+                and user_name like #{userNameLike}
             </if>
             <if test="phone != null and phone != ''">
                 and phone = #{phone}
             </if>
-            <if test="email != null and email != ''">
+            <if test="@org.apache.commons.lang3.StringUtils@isNotBlank(email)">
                 and email = #{email}
             </if>
         </where>
